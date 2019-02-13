@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>铂爵旅拍</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style type="text/css">
+        html,body{
+            height: 100%;
+            font-size: 14px;
+        }
+        header{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background-color: #E62E8B;
+            overflow: hidden;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 44px;
+            display: flex;
+            display: -webkit-flex;
+            display: -webkit-box;
+            background-color: #f4f5f6;
+            position: fixed;
+            bottom: 0;
+        }
+        .menu {
+            width: 25%;
+            height: 44px;
+            box-sizing: border-box;
+            padding-bottom: 5px;
+            padding-top: 27px;
+            color: #585858;
+            font-size: 12px;
+            text-align: center;
+            background-size: 22px 22px;
+            background-position: center 5px;
+            background-repeat: no-repeat;
+        }
+        
+        .footer .home {
+            background-image: url(./image/footer/home.png);
+        }
+        
+        .footer .video {
+            background-image: url(./image/footer/video.png);
+        }
+        
+        .footer .photo {
+            background-image: url(./image/footer/gambit.png);
+        }
+        
+        .footer .my {
+            background-image: url(./image/footer/my.png);
+        }
+        
+        .footer .home.active {
+            background-image: url(./image/footer/home_act.png);
+            pointer-events: none;
+        }
+        
+        .footer .video.active {
+            background-image: url(./image/footer/video_act.png);
+            pointer-events: none;
+        }
+        
+        .footer .photo.active {
+            background-image: url(./image/footer/gambit_act.png);
+            pointer-events: none;
+        }
+        .footer .my.active {
+            background-image: url(./image/footer/my_act.png);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">铂爵旅拍</header>
+    <footer id="footer" class="footer">
+        <div class="menu home active " tapmode="active" onclick="goMain(0)">首页</div>
+        <div class="menu video" tapmode="active" onclick="goVideo(1)">微电影</div>
+        <div class="menu photo" tapmode="active" onclick="goPhoto(2)">客照</div>
+        <div class="menu my" tapmode="active" onclick="goSignUp(3)">报名</div>
+    </footer>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    var headerH;
+    var frameH;
+    var footerH;
+    apiready = function(){
+        var header = $api.byId('header');
+        var footer = $api.byId('footer');
+        var winHeight = api.winHeight;
+        
+        $api.fixStatusBar(header);//获取状态栏高度并添加到header高度中
+        headerH = $api.offset(header).h;
+        footerH = $api.offset(footer).h;
+        frameH = winHeight - headerH - footerH//获取frame的高度设置到rect里
+
+        api.openFrame({
+            name: 'main',
+            url: './html/main.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            pageParam: {
+                headerHeight: headerH,
+                frameHeight:frameH
+            },
+            bounces: true,
+            bgColor: '#c0c0c0',
+            vScrollBarEnabled: true,//是否显示垂直滚动条
+            hScrollBarEnabled: true//是否显示水平滚动条
+        });
+ 
+    }
+
+    //跳转到首页
+    function goMain(num){
+        footerTab(num);
+        closePhoto();
+        api.openFrame({
+            name: 'main',
+            url: './html/main.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            animation:{
+                type:"movein",
+                duration:"500"
+            }
+        })
+    }
+
+    //跳转到微电影页
+    function goVideo(num){
+        footerTab(num);
+        closePhoto();
+        api.openFrame({
+            name: 'video',
+            url: './html/video.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            animation:{
+                type:"movein",
+                duration:"500"
+            }
+        })
+    }
+
+    //跳转到客照页
+    function goPhoto(num){
+        footerTab(num);
+        api.openFrame({
+            name: 'photo',
+            url: './html/photo.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            animation:{
+                type:"movein",
+                duration:"500"
+            },
+            pageParam:{
+                headHeight:headerH,
+                footHeight:footerH
+            }
+        })
+    }
+
+    //跳转到登录页
+    function goSignUp(num){
+        footerTab(num);
+        closePhoto();
+        api.openFrame({
+            name: 'login',
+            url: './html/signUp.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            animation:{
+                type:"movein",
+                duration:"500"
+            }
+        })
+    }
+
+    function footerTab(num){
+        var footer = $api.byId('footer');
+        var menus = $api.domAll(footer,".menu");
+
+        for(var i=0;i<menus.length;i++){
+            $api.removeCls(menus[i], 'active');
+            if(i == num){
+                $api.addCls(menus[i], 'active');
+            }
+        }
+    }
+
+    function closePhoto(){
+        api.closeFrame({
+            name: 'photo'
+        });
+        api.closeFrameGroup({
+            name: 'photoCity'
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+	<style>
+		.myswiper{
+            width: 100%;
+        }
+        .swiper-slide img{
+            width: 100%;
+        }
+        article{
+            padding: 10px;
+        }
+        .item{
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .text{
+            width: 62%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .image{
+            width: 35%;
+            font-size: 0;
+        }
+        .image img{
+            width: 100%;
+        }
+        .text-title{
+            font-weight: normal;
+            font-size: 18px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .date{
+            font-size: 14px;
+            color: #c0c0c0;
+        }
+	</style>
+</head>
+<body>
+    <!-- 首页底部轮播 -->
+    <div class="myswiper">
+        <div class="swiper-container" id="swiper1">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" onclick="goActivity()">
+                <img src="https://bjnewmobile.oss-cn-hangzhou.aliyuncs.com/201901/31caa0a68e.jpg">
+            </div>
+            <div class="swiper-slide" onclick="goActivity2()">
+                <img src="https://bjnewmobile.oss-cn-hangzhou.aliyuncs.com/201901/4a87a20134.jpg">
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- 首页底部轮播END -->
+    <!-- 文章区域 -->
+    <article>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    旅拍婚纱照应该注意的小细节
+                </h4>
+                <div class="date">
+                    2019-01-30 15:46:58
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834447889984.jpg">
+            </div>
+        </div>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    深圳旅拍婚纱照价格介绍 风车岛景点你喜欢吗？
+                </h4>
+                <div class="date">
+                    2019-01-29 11:41:43
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834587182511.jpg">
+            </div>
+        </div>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    非主流风格婚纱照大家喜欢吗？怎么拍才好看？
+                </h4>
+                <div class="date">
+                    2019-01-28 16:21:37
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834794876563.jpg">
+            </div>
+        </div>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    旅拍婚纱照应该注意的小细节
+                </h4>
+                <div class="date">
+                    2019-01-30 15:46:58
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834447889984.jpg">
+            </div>
+        </div>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    深圳旅拍婚纱照价格介绍 风车岛景点你喜欢吗？
+                </h4>
+                <div class="date">
+                    2019-01-29 11:41:43
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834587182511.jpg">
+            </div>
+        </div>
+        <div class="item" onclick="goDetail()">
+            <div class="text">
+                <h4 class="text-title">
+                    非主流风格婚纱照大家喜欢吗？怎么拍才好看？
+                </h4>
+                <div class="date">
+                    2019-01-28 16:21:37
+                </div>
+            </div>
+            <div class="image">
+                <img src="https://img.bj520.com/20190130/1548834794876563.jpg">
+            </div>
+        </div>
+    </article>
+    <!-- 文章区域END -->
+</body>
+<script type="text/javascript" src="../script/swiper.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    //初始化顶部轮播
+    var mySwiper1 = new Swiper('#swiper1', {
+        autoplay: true,
+        loop : true,
+    })
+    
+    var headerH;
+    var frameH;
+    apiready = function(){
+        headerH = api.pageParam.headerHeight
+        frameH = api.pageParam.frameHeight
+    };
+
+    function goActivity(){
+        api.openFrame({
+            name: 'activity',
+            url: './activity.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        });
+    }
+
+    function goActivity2(){
+        api.openFrame({
+            name: 'activity2',
+            url: './activity2.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        });
+    }
+
+    function goDetail(){
+        api.openWin({
+            name: 'news-detail',
+            url: 'news-detail.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: frameH
+            },
+            bounces: false,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true,
+            slidBackEnabled:true
+        });
+    }
+</script>
+</html>

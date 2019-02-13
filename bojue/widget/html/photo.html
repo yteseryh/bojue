@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<style>
+		  nav{
+	        width: 380%;
+          height: 40px;
+          line-height: 40px;
+          display: flex;
+          display: -webkit-box;
+          display: -webkit-flex;
+          background-color: #FF69B4;
+	    }
+	    .menu{
+	        width: 20vw;
+	        text-align: center;
+	        color: #000;
+	    }
+	    .seclect{
+	        font-size: 16px;
+	        font-weight: bold;
+	        color: #fff;
+	    }
+	</style>
+</head>
+<body>
+    <nav id="nav">
+       <div class="menu seclect" tapmode="seclect" onclick="clickNavTab(0)">三亚</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(1)">厦门</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(2)">丽江</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(3)">大理</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(4)">北京</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(5)">青岛</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(6)">大连</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(7)">桂林</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(8)">杭州</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(9)">深圳</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(10)">香港</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(11)">香格里拉</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(12)">澳门</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(13)">普吉岛</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(14)">巴厘岛</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(15)">马尔代夫</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(16)">日本</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(17)">巴黎</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(18)">布拉格</div>
+       <div class="menu" tapmode="seclect" onclick="clickNavTab(19)">欧洲</div>
+    </nav>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+  var menus;
+  var headerH;
+  var footerH;
+  apiready = function(){
+    var winHeight = api.winHeight;
+    var nav = $api.byId('nav');
+    var navObj = $("#nav");
+    var navH = $api.offset(nav).h;
+  	menus = $api.domAll(nav,".menu");
+    headerH = api.pageParam.headHeight;
+    footerH = api.pageParam.footHeight;
+		api.openFrameGroup ({
+            name: 'photoCity',
+            scrollEnabled: true,
+            rect: {
+                 x: 0,
+                 y: headerH+navH, 
+                 w: 'auto', 
+                 h: winHeight-headerH-navH-footerH
+            },
+            index: 0,
+            frames: [{
+                name: 'sanya',
+                url: './photo-sanya.html'
+            },{
+                name: 'xiamen', 
+                url: './photo-xiamen.html'
+            },{
+                name: 'lijiang', 
+                url: './photo-lijiang.html'
+            },{
+                name: 'dali', 
+                url: './photo-dali.html'
+            },{
+                name: 'beijing', 
+                url: './photo-beijing.html'
+            },{
+                name: 'qingdao', 
+                url: './photo-qingdao.html'
+            },{
+                name: 'dalian', 
+                url: './photo-dalian.html'
+            },{
+                name: 'guilin', 
+                url: './photo-guilin.html'
+            },{
+                name: 'hangzhou', 
+                url: './photo-hangzhou.html'
+            },{
+                name: 'shenzhen', 
+                url: './photo-shenzhen.html'
+            },{
+                name: 'xianggang', 
+                url: './photo-xianggang.html'
+            },{
+                name: 'xianggelila', 
+                url: './photo-xianggelila.html'
+            },{
+                name: 'aomen', 
+                url: './photo-aomen.html'
+            },{
+                name: 'pujidao', 
+                url: './photo-pujidao.html'
+            },{
+                name: 'balidao', 
+                url: './photo-balidao.html'
+            },{
+                name: 'maerdaifu', 
+                url: './photo-maerdaifu.html'
+            },{
+                name: 'riben', 
+                url: './photo-riben.html'
+            },{
+                name: 'bali', 
+                url: './photo-bali.html'
+            },{
+                name: 'bulage', 
+                url: './photo-bulage.html'
+            },{
+                name: 'ouzhou', 
+                url: './photo-ouzhou.html'
+            }]
+        }, function(ret, err){
+            if(ret){
+                //滑动成功
+                navTab(ret.index)
+
+                //frame切换导航位置跟随变化
+                var cityIndex = ret.index-2
+                if(cityIndex>=1){
+                  navObj.css('transform', 'translate(-'+20*cityIndex+'vw)');
+                  if(cityIndex>=14){
+                    navObj.css('transform', 'translate(-'+20*14+'vw)');
+                  }
+                }else{
+                  navObj.css('transform', 'translate(0)');
+                }
+            }else{
+                //滑动失败
+            }
+    });
+};
+ 
+    
+  function navTab(index){
+      for(var i=0;i<menus.length;i++){
+          if(i==index){
+              $api.addCls(menus[i], 'seclect');
+          }else{
+              $api.removeCls(menus[i], 'seclect');
+          }
+      }
+  };
+
+  function clickNavTab(num){
+      api.setFrameGroupIndex({
+          name: 'photoCity',
+          index: num
+      });
+  };
+</script>
+</html>

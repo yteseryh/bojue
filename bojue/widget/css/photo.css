@@ -1,0 +1,19 @@
+img{
+    width: 100%;
+}
+.photo-content{
+    padding: 0 20px;
+    font-size: 0;
+}
+.city-title{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+}
+.city-text{
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.photo-content>img{
+    margin-bottom: 20px;
+}

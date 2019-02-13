@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<style>
+        .content{
+            width: 100%;
+            text-align: right;
+            font-size: 0;
+            position: relative;
+        }
+        .content img{
+            width: 100%;
+        }
+        .signup{
+            width: 90%;
+            position: absolute;
+            top: 30%;
+            left: 5%;
+            font-size: 18px;
+        }
+        input{
+            -webkit-appearance: none;
+        }
+        #user-name{
+            border: 1px solid #000;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 0;
+            text-align: center;
+        }
+        #user-password{
+            border: 1px solid #000;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            margin-top: 5%;
+            border-radius: 0;
+            text-align: center;
+        }
+        #user-submit{
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            margin-top: 5%;
+            background-color: #000;
+            color: #fff;
+            border-radius: 0;
+        }
+        input::-webkit-input-placeholder{
+            color: #000;
+        }
+	</style>
+</head>
+<body>
+    <div class="content">
+        <img src="../image/form.png">
+        <a href="tel:400-6677-500">
+            <img src="../image/tel.png">
+        </a>
+        <form class="signup">
+            <input type="text" id="user-name" placeholder="姓名">
+            <input type="test" id="user-password" placeholder="电话">
+            <input type="button" id="user-submit" value="提交">
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+    };
+</script>
+</html>
